@@ -6,6 +6,12 @@ package("bsci")
     add_versions("0.1.6", "4b3e5c0104e5c2f4c8d22e7cc40f7b0c95248d36")
     add_versions("0.1.7", "6f74e2d00e574ea24cdac76238d7d67310586eec")
     add_versions("0.3.0", "35a49d2f7f393ed3870822c3dfc987665dcb0631")
-    on_install(function (package)
-        import("package.tools.xmake").install(package)
+    add_versions("0.3.1", "b1edcd3951b18d99b5e6e70cad156a83191a7a93")
+    add_configs("target_type", {default = "server", values = {"server", "client"}})
+    on_install(function(package)
+        if package:config("target_type") == "server" then
+            import("package.tools.xmake").install(package)
+        else
+            import("package.tools.xmake").install(package, {"--target_type=client"})
+        end
     end)
