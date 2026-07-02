@@ -1,7 +1,7 @@
 -- repo: https://github.com/KhronosGroup/glslang
 package("lumenite-glslang")
     set_homepage("https://github.com/KhronosGroup/glslang")
-    set_description("Pinned glslangValidator CLI for Lumenite GLSL to SPIR-V compilation.")
+    set_description("Pinned glslang library for Lumenite GLSL to SPIR-V compilation.")
     set_license("Apache-2.0")
 
     add_urls("https://github.com/KhronosGroup/glslang.git")
@@ -15,7 +15,9 @@ package("lumenite-glslang")
     end
 
     on_load(function (package)
-        package:set("kind", "binary")
+        package:set("kind", "library")
+        package:add("links", "glslang", "MachineIndependent", "GenericCodeGen", "glslang-default-resource-limits", "SPIRV", "OSDependent")
+        package:add("syslinks", "advapi32")
     end)
 
     on_install("windows", "linux", "macosx", "mingw", function (package)

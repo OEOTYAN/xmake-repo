@@ -1,7 +1,7 @@
 -- repo: https://github.com/KhronosGroup/SPIRV-Cross
 package("lumenite-spirv-cross")
     set_homepage("https://github.com/KhronosGroup/SPIRV-Cross")
-    set_description("Pinned SPIRV-Cross CLI for Lumenite shader translation.")
+    set_description("Pinned SPIRV-Cross libraries for Lumenite shader translation.")
     set_license("Apache-2.0")
 
     add_urls("https://github.com/KhronosGroup/SPIRV-Cross.git")
@@ -15,7 +15,8 @@ package("lumenite-spirv-cross")
     end
 
     on_load(function (package)
-        package:set("kind", "binary")
+        package:set("kind", "library")
+        package:add("links", "spirv-cross-hlsl", "spirv-cross-glsl", "spirv-cross-cpp", "spirv-cross-reflect", "spirv-cross-msl", "spirv-cross-util", "spirv-cross-core")
     end)
 
     on_install("windows", "linux", "macosx", "mingw", function (package)
