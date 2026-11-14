@@ -12,6 +12,7 @@ package("bsci")
     add_versions("26.32.2", "fafd40d522722f37fe6a88069b049997b071c9be")
     add_versions("26.40.0", "3f01e242f30fc4586316cd157e9a99bf72261681")
     add_versions("26.51.0", "a99031e7a60a2399c29a56b699c6e5763723564b")
+    add_versions("26.60.0", "cf36ed005b656e1c43347645b6478bb8ad20f99a")
     add_configs("target_type", {default = "server", values = {"server", "client"}})
     on_install(function(package)
         if package:config("target_type") == "server" then
